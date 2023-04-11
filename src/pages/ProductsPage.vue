@@ -1,6 +1,7 @@
 <template>
-  <q-page>
-    <div class="q-gutter-md q-pa-md" style="max-width: 700px">
+  <q-page class="q-ml-md">
+    <img src="../assets/5594188.png" alt="" class="bannerProduct q-mt-md" />
+    <div class="q-py-md" style="max-width: 700px">
       <q-input
         outlined
         v-model="input"
@@ -8,7 +9,7 @@
         @keyup.enter="search()"
       ></q-input>
     </div>
-    <q-list class="q-mx-auto" style="max-width: 1050px">
+    <q-list style="max-width: 1050px">
       <q-item-label header class="text-h5"> Produtos </q-item-label>
 
       <div class="row" style="max-width: 1050px">
@@ -40,3 +41,8 @@ function search() {
   productStore.searchProduct(input.value)
 }
 </script>
+<style scoped>
+.bannerProduct {
+  width: 980px;
+}
+</style>

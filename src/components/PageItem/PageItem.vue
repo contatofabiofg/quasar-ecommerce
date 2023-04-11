@@ -1,6 +1,6 @@
 <template>
   <div class="bg-grey-1 q-ma-sm q-pa-md shadow-1 relative-position">
-    <q-item style="width: 300px">
+    <q-item style="width: 200px">
       <q-item-section class="column items-center relative-position">
         <div
           class="pageImage row items-center justify-center"

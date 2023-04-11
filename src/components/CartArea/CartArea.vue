@@ -1,6 +1,24 @@
 <template>
   <q-list>
-    <q-item-label header class="text-h5"> Carrinho </q-item-label>
+    <q-item-label header class="row justify-between">
+      <span class="text-h5">Carrinho</span>
+      <div class="relative-position" @click="$emit('close')">
+        <q-btn
+          flat
+          dense
+          round
+          icon="shopping_cart"
+          aria-label="Shopping Cart"
+        />
+        <q-avatar
+          v-if="cartStore.state.length > 0"
+          size="17px"
+          text-color="white"
+          class="absolute-top-right bg-red-5"
+          >{{ cartStore.state.length }}</q-avatar
+        >
+      </div>
+    </q-item-label>
 
     <CartItem
       v-for="(item, index) in cartItens"
@@ -16,15 +34,16 @@
   </q-list>
 </template>
 <script setup lang="ts">
-import { ComputedRef, computed } from 'vue'
+import { ComputedRef, computed, ref } from 'vue'
 import CartItem from 'src/components/CartItem/CartItem.vue'
 import { ICartItem } from 'src/types/ICartItem'
 import { useCartStore } from 'src/stores/cartStore'
 
-const store = useCartStore()
+const cartStore = useCartStore()
+defineEmits(['close'])
 
 const cartItens: ComputedRef<ICartItem[]> = computed(() => {
-  return store.state as ICartItem[]
+  return cartStore.state as ICartItem[]
 })
 
 function total() {

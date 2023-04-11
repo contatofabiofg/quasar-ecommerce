@@ -1,6 +1,6 @@
 <template>
   <div class="row bg-grey-1 q-ma-sm shadow-1">
-    <q-item class="col-9">
+    <q-item class="col-8">
       <q-item-section side>
         {{ (props.cartItem?.index as number) + 1 }}
       </q-item-section>

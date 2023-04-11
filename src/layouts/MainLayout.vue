@@ -1,7 +1,14 @@
 <template>
   <q-layout view="hHr LpR lFr">
+    <Transition>
+      <div
+        v-if="cartOpen"
+        class="blackBackground"
+        @click="cartOpen = false"
+      ></div>
+    </Transition>
     <q-header>
-      <q-toolbar class="bg-blue-grey-7">
+      <q-toolbar class="bg-amber-7 row">
         <q-btn
           flat
           dense
@@ -32,7 +39,7 @@
     </q-header>
 
     <!-- MENU -->
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer v-model="leftDrawerOpen" bordered :width="200" show-if-above>
       <q-list>
         <q-item-label header> Menu </q-item-label>
 
@@ -45,8 +52,16 @@
     </q-drawer>
 
     <!-- CART -->
-    <q-drawer side="right" v-model="cartOpen" bordered :width="500">
-      <CartArea />
+    <q-drawer
+      overlay
+      elevated
+      side="right"
+      v-model="cartOpen"
+      bordered
+      :width="400"
+      class="z-top"
+    >
+      <CartArea @close="cartOpen = false" />
     </q-drawer>
 
     <q-page-container>
@@ -131,3 +146,26 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
+<style>
+.blackBackground {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 3000;
+  transition: 1s ease all;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
